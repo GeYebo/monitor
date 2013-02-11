@@ -1,3 +1,6 @@
 intermediate/
 publish/
 temp/
+.*/
+.server
+node_modules

@@ -2,6 +2,8 @@
 var express = require('express');
 var http = require('http');
 var app = express();
+var server = http.createServer(app);
+app.httpServer = server;
 
 // Configuration
 
@@ -35,9 +37,9 @@ connection.on('ready', function() {
 
 // Socket.io Communication
 // Hook Socket.io into Express
-var server =  http.createServer(app).listen(app.get('port'), function(){
-    console.log("Express server listening on port " + app.get('port'));
-});
+// var server =  http.createServer(app).listen(app.get('port'), function(){
+//     console.log("Express server listening on port " + app.get('port'));
+// });
 
 
 var io = require('socket.io').listen(server);
@@ -57,6 +59,11 @@ io.of('/watch').on('connection', function(socket) {
         })
     })
 })
+
+
+// var server =  http.createServer(app).listen(app.get('port'), function(){
+//     console.log("Express server listening on port " + app.get('port'));
+// });
 
 
 require('./allRoutes')(app);
